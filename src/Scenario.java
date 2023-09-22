@@ -3,10 +3,11 @@ public class Scenario {
     protected int height;
 
     protected Place[][] scenario;
+    int cont = 0;
 
     public Scenario(int width, int height){
-        this.width = width + 2;
-        this.height = height + 2;
+        this.width = width;
+        this.height = height;
         this.scenario = new Place[this.width][this.height];
 
         for(int x = 0; x < this.width; x++){
@@ -34,9 +35,10 @@ public class Scenario {
         System.out.println(scenario);
     }
 
-    public void prepareScenario(){
+    public void prepareScenario() throws InterruptedException{
         putRandomDirtyPlaces();
         putRandomObstacles();
+        movimentarRobo();
     }
 
     public void putRandomDirtyPlaces(){
@@ -57,8 +59,34 @@ public class Scenario {
             }
         }
     }
+    
+    private void movimentarRobo() throws InterruptedException {
+    	for(int x = 0; x < this.width; x++){
+            for(int y = 0; y < this.height; y++){
+                if(isAccessible(x, y)) {
+                	if(this.scenario[x][y].getState() == '*') {
+                		this.scenario[x][y].setState('X');
+                		cont++;
+                		printScenario();
+                		this.scenario[x][y].setState(' ');
+                		Thread.sleep(1000);
+                	}else if(this.scenario[x][y].getState() == '=') {
+                		this.scenario[x][y+1].setState('X');
+                		printScenario();
+                		this.scenario[x][y+1].setState(' ');
+                		Thread.sleep(2500);
+                	}
+                	this.scenario[x][y].setState('X');
+                	printScenario();
+            		this.scenario[x][y].setState(' ');
+            		Thread.sleep(1000);
+                }
+            }
+        }
+    	System.out.println("Total: " + cont);
+	}
 
-    //#todo: check if this is correct
+	//#todo: check if this is correct
     public boolean isAccessible(int x, int y){
         return !isWall(x, y) && this.scenario[x][y].getState() != '=';
     }
