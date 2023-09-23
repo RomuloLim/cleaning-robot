@@ -70,11 +70,6 @@ public class Scenario {
                 		printScenario();
                 		this.scenario[x][y].setState(' ');
                 		Thread.sleep(1000);
-                	}else if(this.scenario[x][y].getState() == '=') {
-                		this.scenario[x][y+1].setState('X');
-                		printScenario();
-                		this.scenario[x][y+1].setState(' ');
-                		Thread.sleep(2500);
                 	}
                 	this.scenario[x][y].setState('X');
                 	printScenario();
