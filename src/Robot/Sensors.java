@@ -25,6 +25,7 @@ public class Sensors {
         return true;
     }
 
+    // Sensores para ver oq esta na posicao indicada
     public boolean isWall(Place place) {
         return place.isWall();
     }

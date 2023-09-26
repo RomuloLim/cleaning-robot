@@ -21,10 +21,12 @@ public class Scenario {
         }
     }
 
+    //Funcao pra verificar se eh parede
     protected boolean isBorder(int x, int y){
         return x == 0 || y == 0 || x == this.width - 1 || y == this.height - 1;
     }
 
+    //Funcao para imprimir a sala no console
     public void printScenario() {
         StringBuilder scenario = new StringBuilder();
         for(int x = 0; x < this.width; x++){
@@ -46,6 +48,7 @@ public class Scenario {
         putRandomObstacles();
     }
 
+    //Funcao para implementar sujeiras na sala em lugares aleatorios
     public void putRandomDirtyPlaces(){
         for(int x = 0; x < this.width; x++){
             for(int y = 0; y < this.height; y++){
@@ -57,6 +60,7 @@ public class Scenario {
         }
     }
 
+  //Funcao para implementar obstaculos na sala em lugares aleatorios
     public void putRandomObstacles(){
         for(int x = 0; x < this.width; x++){
             for(int y = 0; y < this.height; y++){

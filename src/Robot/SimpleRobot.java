@@ -8,6 +8,7 @@ public class SimpleRobot extends Robot{
         super(posY, posY, scenario);
     }
 
+    //Funcao para a movimentacao aleatoria do robo
     @Override
     public void move() {
         int random = ((int) (Math.random() * 10) % 4);
@@ -28,6 +29,7 @@ public class SimpleRobot extends Robot{
         }
     }
 
+    //Funcao de limpeza
     @Override
     public void clear() {
         if(this.sensors.isDirty()){

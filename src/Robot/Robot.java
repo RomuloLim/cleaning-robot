@@ -21,27 +21,32 @@ public abstract class Robot extends Sensors {
 
 	public abstract void move();
 
+	//Funcao para limpar a sujeira
 	public void clear() {
 		if(this.sensors.isDirty()){
 			this.scenario.getScenario()[posX][posY].setState(' ');
 		}
 	}
 
+	//Funcao para ver a possibilidade de se movimentar para cima
 	protected boolean canMoveUp(){
 		return this.sensors.nextPlace(scenario.getScenario()[posX + 1][posY]);
 	}
 
+	//Funcao para mover para cima
 	protected boolean moveUp(){
 		this.posX++;
 		this.points++;
 		sensors.setPlace(this.scenario.getScenario()[posX][posY]);
 		return true;
 	}
-
+	
+	//Funcao para ver a possibilidade de se movimentar para baixo
 	protected boolean canMoveDown(){
 		return this.sensors.nextPlace(scenario.getScenario()[posX - 1][posY]);
 	}
 
+	//Funcao para mover para baixo
 	protected boolean moveDown(){
 		this.posX--;
 		this.points++;
@@ -49,10 +54,12 @@ public abstract class Robot extends Sensors {
 		return true;
 	}
 
+	//Funcao para ver a possibilidade de se movimentar para a esquerda
 	protected boolean canMoveLeft(){
 		return this.sensors.nextPlace(scenario.getScenario()[posX][posY + 1]);
 	}
 
+	//Funcao para mover para a esquerda
 	protected boolean moveLeft(){
 		this.posY++;
 		this.points++;
@@ -60,10 +67,12 @@ public abstract class Robot extends Sensors {
 		return true;
 	}
 
+	//Funcao para ver a possibilidade de se movimentar para a direita
 	protected boolean canMoveRight(){
 		return this.sensors.nextPlace(scenario.getScenario()[posX][posY - 1]);
 	}
 
+	//Funcao para mover para a direita
 	protected boolean moveRight(){
 		this.posY--;
 		this.points++;

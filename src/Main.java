@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Começando limpeza");
 
-        Scenario scenario = new Scenario(5, 5);
+        Scenario scenario = new Scenario(7, 7);
         scenario.prepareScenario();
 
         SimpleRobot robot = new SimpleRobot(1, 1, scenario);
