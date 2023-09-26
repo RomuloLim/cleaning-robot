@@ -6,7 +6,7 @@ public class Scenario {
     protected int width;
     protected int height;
     protected Place[][] scenario;
-    int cont = 0;
+    public int dirtyAmount = 0;
 
     public Scenario(int width, int height){
         this.width = width;
@@ -43,17 +43,18 @@ public class Scenario {
         System.out.println(scenario);
     }
 
-    public void prepareScenario() throws InterruptedException{
+    public void prepareScenario() throws InterruptedException {
         putRandomDirtyPlaces();
         putRandomObstacles();
-//        movimentarRobo();
     }
 
     public void putRandomDirtyPlaces(){
         for(int x = 0; x < this.width; x++){
             for(int y = 0; y < this.height; y++){
-                if(!isBorder(x,y) && !this.scenario[x][y].isWall() && Math.random() < 0.2)
+                if(!isBorder(x,y) && !this.scenario[x][y].isWall() && Math.random() < 0.2){
                     this.scenario[x][y].setState('*');
+                    dirtyAmount++;
+                }
             }
         }
     }
@@ -67,27 +68,6 @@ public class Scenario {
             }
         }
     }
-    
-//    private void movimentarRobo() throws InterruptedException {
-//    	for(int x = 0; x < this.width; x++){
-//            for(int y = 0; y < this.height; y++){
-//                if(this.scenario[x][y].isWall()) {
-//                	if(this.scenario[x][y].getState() == '*') {
-//                		this.scenario[x][y].setState('X');
-//                		cont++;
-//                		printScenario();
-//                		this.scenario[x][y].setState(' ');
-//                		Thread.sleep(1000);
-//                	}
-//                	this.scenario[x][y].setState('X');
-//                	printScenario();
-//            		this.scenario[x][y].setState(' ');
-//            		Thread.sleep(1000);
-//                }
-//            }
-//        }
-//    	System.out.println("Total: " + cont);
-//	}
 
     // GETTERS AND SETTERS
     public int getWidth() {

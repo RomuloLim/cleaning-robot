@@ -12,10 +12,10 @@ public class SimpleRobot extends Robot{
     public void move() {
         int random = ((int) (Math.random() * 10) % 4);
         boolean ableToMove = switch (random) {
-            case 0 -> moveUp();
-            case 1 -> moveDown();
-            case 2 -> moveLeft();
-            case 3 -> moveRight();
+            case 0 -> canMoveUp() && moveUp();
+            case 1 -> canMoveDown() && moveDown();
+            case 2 -> canMoveLeft() && moveLeft();
+            case 3 -> canMoveRight() && moveRight();
             default -> false;
         };
 
@@ -23,7 +23,7 @@ public class SimpleRobot extends Robot{
             move();
         } else if (this.sensors.isDirty()){
             clear();
-            System.out.println("Limpei esse caralho de sala");
+            System.out.println("Limpei essa sala (" + this.posX + ", " + this.posY + ")");
         }
     }
 

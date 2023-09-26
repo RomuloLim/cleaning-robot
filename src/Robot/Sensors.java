@@ -13,7 +13,7 @@ public class Sensors {
         this.place = place;
     }
 
-    public boolean nextScenario(Place currentPlace){
+    public boolean nextPlace(Place currentPlace){
         if(currentPlace.isWall()){
             return false;
         }
