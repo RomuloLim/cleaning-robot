@@ -5,7 +5,7 @@ import Scenario.Scenario;
 public class SimpleRobot extends Robot{
 
     public SimpleRobot(int posX, int posY, Scenario scenario) {
-        super(scenario);
+        super(posY, posY, scenario);
     }
 
     @Override
@@ -23,6 +23,7 @@ public class SimpleRobot extends Robot{
             move();
         } else if (this.sensors.isDirty()){
             clear();
+            scenario.dirtyAmount--;
             System.out.println("Limpei essa sala (" + this.posX + ", " + this.posY + ")");
         }
     }

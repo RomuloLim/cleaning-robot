@@ -6,19 +6,19 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Começando limpeza");
 
-        Scenario scenario = new Scenario(10, 10);
+        Scenario scenario = new Scenario(5, 5);
         scenario.prepareScenario();
 
-//        SimpleRobot robot = new SimpleRobot(1, 1, scenario);
-        SmartRobot robot = new SmartRobot(1, 1, scenario);
+        SimpleRobot robot = new SimpleRobot(1, 1, scenario);
+        SmartRobot smartRobot = new SmartRobot(1, 1, scenario);
 
          while (scenario.dirtyAmount > 0) {
-            Thread.sleep(1500);
+            Thread.sleep(1100);
 //            robot.move();
-             robot.prepareNextMovement();
+            smartRobot.prepareNextMovement();
             scenario.printScenario();
          }
          //scenario.printScenario();
-         
+         System.out.println("Limpeza finalizada !!");
     }
 }

@@ -1,9 +1,8 @@
 package Robot;
 
-import Scenario.Place;
-import Scenario.Scenario;
-
 import java.util.ArrayList;
+
+import Scenario.Scenario;
 
 public class SmartRobot extends Robot{
     private static class VisitedPlace {
@@ -18,6 +17,7 @@ public class SmartRobot extends Robot{
     private final ArrayList<VisitedPlace> visitedPlaces;
     private int nextMove;
     private final ArrayList<Boolean> loopCounter = new ArrayList<Boolean>(4);
+    
     public SmartRobot(int posX, int posY, Scenario scenario) {
             super(posX, posY, scenario);
             this.visitedPlaces = new ArrayList<>();
@@ -28,13 +28,13 @@ public class SmartRobot extends Robot{
     }
 
     /*
-    * prepara o próximo movimento checando para qual posição pode ir e se já foi visitada
-    * os métodos canMoveUp checam a possibilidade baseado na existência ou não de uma parede
-    * o método isVisited checam se a posição já foi visitada
-    * o método getNextPosition retorna a posição que o robô irá se mover
-    * o método loopCheck checa se o robô entrou em loop, se sim, limpa o histórico de salas visitadas
-    * creio que o ideal seria que o robô não limpasse o histórico de salas visitadas, mas sim que ele
-    * não entrasse em loop, porém não consegui pensar em uma solução para isso
+    * prepara o proximo movimento checando para qual posicao pode ir e se ja foi visitada
+    * os metodos canMoveUp checam a possibilidade baseado na existencia ou nao de uma parede
+    * o metodo isVisited checam se a posi�ao ja foi visitada
+    * o metodo getNextPosition retorna a posi�ao que o robo ira se mover
+    * o metodo loopCheck checa se o robo entrou em loop, se sim, limpa o historico de salas visitadas
+    * creio que o ideal seria que o robo nao limpasse o historico de salas visitadas, mas sim que ele
+    * nao entrasse em loop, porem nao consegui pensar em uma solucao para isso
      */
     public void prepareNextMovement() {
         int random = ((int) (Math.random() * 10) % 4);
@@ -66,10 +66,10 @@ public class SmartRobot extends Robot{
     }
 
     /*
-    * Move o robô para a próxima posição baseado no valor de nextMove
-    * O sensor é checado para ver se a sala está suja, se sim, limpa a sala
-    * e adiciona a sala ao histórico de salas visitadas
-    * o método move é chamado recursivamente até que o robô encontre uma sala suja
+    * Move o robo para a proxima posicao baseado no valor de nextMove
+    * O sensor eh checado para ver se a sala esta suja, se sim, limpa a sala
+    * e adiciona a sala ao historico de salas visitadas
+    * o metodo move eh chamado recursivamente ate que o robo encontre uma sala suja
     * */
     @Override
     public void move() {
@@ -82,6 +82,7 @@ public class SmartRobot extends Robot{
 
         if (this.sensors.isDirty()) {
             clear();
+            scenario.dirtyAmount--;
             System.out.println("Limpei essa sala (" + this.posX + ", " + this.posY + ")");
         }
 
@@ -89,9 +90,9 @@ public class SmartRobot extends Robot{
     }
 
     /*
-    * Checa se a posição já foi visitada
+    * Checa se a posicao ja foi visitada
     * se sim, retorna true
-    * se não, retorna false
+    * se nao, retorna false
     * */
     private boolean isVisited(int x, int y){
         for(VisitedPlace visitedPlace : visitedPlaces){
@@ -104,14 +105,14 @@ public class SmartRobot extends Robot{
     }
 
     /*
-    * pegar a próxima posição baseado no valor de nextMove
-    * creio que tenha ficado um pouco confuso, não consegui pensar em uma forma melhor de fazer
-    * basicamente, dependendo do valor de nextMove, a posição é alterada
+    * pegar a proxima posicao baseado no valor de nextMove
+    * creio que tenha ficado um pouco confuso, nao consegui pensar em uma forma melhor de fazer
+    * basicamente, dependendo do valor de nextMove, a posicao eh alterada
     * 0 = direita
     * 1 = esquerda
     * 2 = cima
     * 3 = baixo
-    * se o valor for diferente, retorna a posição atual
+    * se o valor for diferente, retorna a posicao atual
     * */
     private int[] getNextPosition(int position) {
         switch (position) {
@@ -135,10 +136,10 @@ public class SmartRobot extends Robot{
 
 
     /*
-    * checa se o robô entrou em loop
+    * checa se o robo entrou em loop
     * se sim, retorna true
-    * se não, retorna false
-    * o loopCounter é um ArrayList de booleanos que guarda se o robô já tentou ir para uma posição
+    * se nao, retorna false
+    * o loopCounter eh um ArrayList de booleanos que guarda se o robo ja tentou ir para uma posicao
     * */
     private boolean loopCheck(int movementSide) {
         if(!loopCounter.get(movementSide)) {

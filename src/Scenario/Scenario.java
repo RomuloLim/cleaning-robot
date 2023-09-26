@@ -1,7 +1,5 @@
 package Scenario;
 
-import java.util.Arrays;
-
 public class Scenario {
     protected int width;
     protected int height;

@@ -24,7 +24,6 @@ public abstract class Robot extends Sensors {
 	public void clear() {
 		if(this.sensors.isDirty()){
 			this.scenario.getScenario()[posX][posY].setState(' ');
-			this.scenario.dirtyAmount--;
 		}
 	}
 
