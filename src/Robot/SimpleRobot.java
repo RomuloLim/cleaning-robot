@@ -4,6 +4,8 @@ import Scenario.Scenario;
 
 public class SimpleRobot extends Robot{
 
+	private int cont = 0;
+	
     public SimpleRobot(int posX, int posY, Scenario scenario) {
         super(posY, posY, scenario);
     }
@@ -19,14 +21,15 @@ public class SimpleRobot extends Robot{
             case 3 -> canMoveRight() && moveRight();
             default -> false;
         };
-
+        
         if(!ableToMove){
             move();
         } else if (this.sensors.isDirty()){
             clear();
             scenario.dirtyAmount--;
+            cont++;
             System.out.println("Limpei essa sala (" + this.posX + ", " + this.posY + ")");
-        }
+        }      
     }
 
     //Funcao de limpeza
@@ -36,4 +39,17 @@ public class SimpleRobot extends Robot{
             this.scenario.getScenario()[posX][posY].setState(' ');
         }
     }
+    
+	public int getCont() {
+		return cont;
+	}
+
+	public void setCont(int cont) {
+		this.cont = cont;
+	}
+
+	@Override
+	public int simpleAssessment() {
+		return getCont();
+	}
 }

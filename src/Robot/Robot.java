@@ -20,6 +20,7 @@ public abstract class Robot extends Sensors {
 	}
 
 	public abstract void move();
+	public abstract int simpleAssessment();
 
 	//Funcao para limpar a sujeira
 	public void clear() {

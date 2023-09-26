@@ -14,6 +14,8 @@ public class SmartRobot extends Robot{
         }
     }
 
+    private int cont = 0;
+    
     private final ArrayList<VisitedPlace> visitedPlaces;
     private int nextMove;
     private final ArrayList<Boolean> loopCounter = new ArrayList<Boolean>(4);
@@ -83,6 +85,7 @@ public class SmartRobot extends Robot{
         if (this.sensors.isDirty()) {
             clear();
             scenario.dirtyAmount--;
+            cont++;
             System.out.println("Limpei essa sala (" + this.posX + ", " + this.posY + ")");
         }
 
@@ -97,7 +100,7 @@ public class SmartRobot extends Robot{
     private boolean isVisited(int x, int y){
         for(VisitedPlace visitedPlace : visitedPlaces){
             if(visitedPlace.x == x && visitedPlace.y == y){
-                System.out.println("visitado (" + x + ", " + y + ")");
+//                System.out.println("visitado (" + x + ", " + y + ")");
                 return true;
             }
         }
@@ -149,4 +152,16 @@ public class SmartRobot extends Robot{
         return !loopCounter.contains(false);
     }
 
+	@Override
+	public int simpleAssessment() {
+		return getCont();
+	}
+
+	public int getCont() {
+		return cont;
+	}
+
+	public void setCont(int cont) {
+		this.cont = cont;
+	}
 }
