@@ -1,5 +1,7 @@
 package Scenario;
 
+import java.util.Random;
+
 public class Scenario {
     protected int width;
     protected int height;
@@ -43,16 +45,19 @@ public class Scenario {
         System.out.println(scenario);
     }
 
-    public void prepareScenario() throws InterruptedException {
-        putRandomDirtyPlaces();
-        putRandomObstacles();
+    public void prepareScenario(long seed) throws InterruptedException {
+        Random random = new Random(seed);
+
+        putRandomDirtyPlaces(random);
+        putRandomObstacles(random);
     }
 
     //Funcao para implementar sujeiras na sala em lugares aleatorios
-    public void putRandomDirtyPlaces(){
+    public void putRandomDirtyPlaces(Random random){
         for(int x = 0; x < this.width; x++){
             for(int y = 0; y < this.height; y++){
-                if(!isBorder(x,y) && !this.scenario[x][y].isWall() && Math.random() < 0.2){
+                double randomValue = (double) Math.abs(random.nextInt())/Integer.MAX_VALUE;
+                if(!isBorder(x,y) && !this.scenario[x][y].isWall() && randomValue < 0.2){
                     this.scenario[x][y].setState('*');
                     dirtyAmount++;
                 }
@@ -61,10 +66,12 @@ public class Scenario {
     }
 
   //Funcao para implementar obstaculos na sala em lugares aleatorios
-    public void putRandomObstacles(){
+    public void putRandomObstacles(Random random){
         for(int x = 0; x < this.width; x++){
             for(int y = 0; y < this.height; y++){
-                if(!isBorder(x,y) && Math.random() < 0.1 && !this.scenario[x][y].isWall()){
+                double randomValue = (double) Math.abs(random.nextInt())/Integer.MAX_VALUE;
+
+                if(!isBorder(x,y) && randomValue < 0.1 && !this.scenario[x][y].isWall()){
                     this.scenario[x][y].setState('=');
                 }
             }

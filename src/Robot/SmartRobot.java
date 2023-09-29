@@ -13,8 +13,6 @@ public class SmartRobot extends Robot{
             this.y = y;
         }
     }
-
-    private int cont = 0;
     
     private final ArrayList<VisitedPlace> visitedPlaces;
     private int nextMove;
@@ -32,8 +30,8 @@ public class SmartRobot extends Robot{
     /*
     * prepara o proximo movimento checando para qual posicao pode ir e se ja foi visitada
     * os metodos canMoveUp checam a possibilidade baseado na existencia ou nao de uma parede
-    * o metodo isVisited checam se a posiçao ja foi visitada
-    * o metodo getNextPosition retorna a posiçao que o robo ira se mover
+    * o metodo isVisited checam se a posiï¿½ao ja foi visitada
+    * o metodo getNextPosition retorna a posiï¿½ao que o robo ira se mover
     * o metodo loopCheck checa se o robo entrou em loop, se sim, limpa o historico de salas visitadas
     * creio que o ideal seria que o robo nao limpasse o historico de salas visitadas, mas sim que ele
     * nao entrasse em loop, porem nao consegui pensar em uma solucao para isso
@@ -85,7 +83,6 @@ public class SmartRobot extends Robot{
         if (this.sensors.isDirty()) {
             clear();
             scenario.dirtyAmount--;
-            cont++;
             System.out.println("Limpei essa sala (" + this.posX + ", " + this.posY + ")");
         }
 
@@ -151,17 +148,4 @@ public class SmartRobot extends Robot{
 
         return !loopCounter.contains(false);
     }
-
-	@Override
-	public int simpleAssessment() {
-		return getCont();
-	}
-
-	public int getCont() {
-		return cont;
-	}
-
-	public void setCont(int cont) {
-		this.cont = cont;
-	}
 }

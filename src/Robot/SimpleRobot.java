@@ -3,8 +3,6 @@ package Robot;
 import Scenario.Scenario;
 
 public class SimpleRobot extends Robot{
-
-	private int cont = 0;
 	
     public SimpleRobot(int posX, int posY, Scenario scenario) {
         super(posY, posY, scenario);
@@ -27,8 +25,6 @@ public class SimpleRobot extends Robot{
         } else if (this.sensors.isDirty()){
             clear();
             scenario.dirtyAmount--;
-            cont++;
-            System.out.println("Limpei essa sala (" + this.posX + ", " + this.posY + ")");
         }      
     }
 
@@ -37,19 +33,9 @@ public class SimpleRobot extends Robot{
     public void clear() {
         if(this.sensors.isDirty()){
             this.scenario.getScenario()[posX][posY].setState(' ');
+            this.points += 10;
+
+            System.out.println("Limpei essa sala (" + this.posX + ", " + this.posY + ")");
         }
     }
-    
-	public int getCont() {
-		return cont;
-	}
-
-	public void setCont(int cont) {
-		this.cont = cont;
-	}
-
-	@Override
-	public int simpleAssessment() {
-		return getCont();
-	}
 }

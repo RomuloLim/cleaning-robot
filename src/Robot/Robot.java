@@ -20,7 +20,6 @@ public abstract class Robot extends Sensors {
 	}
 
 	public abstract void move();
-	public abstract int simpleAssessment();
 
 	//Funcao para limpar a sujeira
 	public void clear() {
@@ -37,7 +36,7 @@ public abstract class Robot extends Sensors {
 	//Funcao para mover para cima
 	protected boolean moveUp(){
 		this.posX++;
-		this.points++;
+		this.points--;
 		sensors.setPlace(this.scenario.getScenario()[posX][posY]);
 		return true;
 	}
@@ -50,7 +49,7 @@ public abstract class Robot extends Sensors {
 	//Funcao para mover para baixo
 	protected boolean moveDown(){
 		this.posX--;
-		this.points++;
+		this.points--;
 		sensors.setPlace(this.scenario.getScenario()[posX][posY]);
 		return true;
 	}
@@ -63,7 +62,7 @@ public abstract class Robot extends Sensors {
 	//Funcao para mover para a esquerda
 	protected boolean moveLeft(){
 		this.posY++;
-		this.points++;
+		this.points--;
 		sensors.setPlace(this.scenario.getScenario()[posX][posY]);
 		return true;
 	}
@@ -76,7 +75,7 @@ public abstract class Robot extends Sensors {
 	//Funcao para mover para a direita
 	protected boolean moveRight(){
 		this.posY--;
-		this.points++;
+		this.points--;
 		sensors.setPlace(this.scenario.getScenario()[posX][posY]);
 		return true;
 	}
